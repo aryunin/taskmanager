@@ -1,7 +1,7 @@
 package com.aryunin.taskmanager.repository;
 
 import com.aryunin.taskmanager.entity.Task;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TaskRepository extends CrudRepository<Task, Integer> {
+public interface TaskRepository extends JpaRepository<Task, Integer> {
 }

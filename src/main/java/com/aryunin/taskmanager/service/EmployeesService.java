@@ -9,6 +9,4 @@ public interface EmployeesService {
     Employee create(Employee newEmployee);
     Employee update(int id, Employee newEmployee);
     Employee delete(int id);
-    Employee assignTask(int taskId, int employeeId);
-    Employee releaseTask(int taskId, int employeeId);
 }
