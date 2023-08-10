@@ -16,7 +16,8 @@ public class Project {
     private String title;
     private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
     private LocalDate creationDate;
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.PERSIST)
     private List<Task> tasks;
 }
