@@ -57,4 +57,18 @@ public class ProjectController {
         projectsService.delete(id);
         return "Project " + id + " has been deleted";
     }
+
+    @PostMapping("/{projectId}/assign/{taskId}")
+    public String assignTask(@PathVariable int projectId,
+                             @PathVariable int taskId) {
+        var project = projectsService.assignTask(projectId, taskId);
+        return "Project " + project.getId() + " has been updated";
+    }
+
+    @PostMapping("/{projectId}/release/{taskId}")
+    public String releaseTask(@PathVariable int projectId,
+                             @PathVariable int taskId) {
+        var project = projectsService.releaseTask(projectId, taskId);
+        return "Project " + project.getId() + " has been updated";
+    }
 }
