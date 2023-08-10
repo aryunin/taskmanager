@@ -3,8 +3,10 @@ package com.aryunin.taskmanager.service;
 import com.aryunin.taskmanager.entity.Task;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.List;
+
 public interface TasksService {
-    Iterable<Task> getAll(PageRequest pageRequest);
+    List<Task> getAll(PageRequest pageRequest);
     Task getById(int id);
     Task create(Task newTask);
     Task update(int id, Task newTask);
