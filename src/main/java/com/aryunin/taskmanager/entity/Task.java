@@ -16,10 +16,11 @@ public class Task {
     private String title;
     private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
     private LocalDate creationDate;
     @ManyToOne
     @JoinColumn(name = "project_id", referencedColumnName = "id")
     private Project project;
-    @ManyToMany(mappedBy = "tasks")
+    @ManyToMany(mappedBy = "tasks", cascade = CascadeType.PERSIST)
     private List<Employee> employees;
 }
