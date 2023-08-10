@@ -57,4 +57,18 @@ public class TaskController {
         tasksService.delete(id);
         return "Task " + id + " has been deleted";
     }
+
+    @PostMapping("/{taskId}/assign/{employeeId}")
+    public String assignEmployee(@PathVariable int taskId,
+                             @PathVariable int employeeId) {
+        var task = tasksService.assignEmployee(taskId, employeeId);
+        return "Task " + task.getId() + " has been updated";
+    }
+
+    @PostMapping("/{taskId}/release/{employeeId}")
+    public String releaseEmployee(@PathVariable int taskId,
+                              @PathVariable int employeeId) {
+        var task = tasksService.releaseEmployee(taskId, employeeId);
+        return "Task " + task.getId() + " has been updated";
+    }
 }
