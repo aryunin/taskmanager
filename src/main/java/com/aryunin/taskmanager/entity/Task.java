@@ -5,11 +5,10 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Data
-public class Project {
+public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -17,6 +16,7 @@ public class Project {
     private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate creationDate;
-    @OneToMany(mappedBy = "project")
-    private List<Task> tasks;
+    @ManyToOne
+    @JoinColumn(name = "project_id", referencedColumnName = "id")
+    private Project project;
 }
