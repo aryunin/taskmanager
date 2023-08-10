@@ -3,8 +3,10 @@ package com.aryunin.taskmanager.service;
 import com.aryunin.taskmanager.entity.Project;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.List;
+
 public interface ProjectsService {
-    Iterable<Project> getAll(PageRequest pageRequest);
+    List<Project> getAll(PageRequest pageRequest);
     Project getById(int id);
     Project create(Project newProject);
     Project update(int id, Project newProject);

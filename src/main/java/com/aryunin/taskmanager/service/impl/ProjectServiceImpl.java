@@ -9,6 +9,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -17,8 +20,8 @@ public class ProjectServiceImpl implements ProjectsService {
     private final TaskRepository taskRepository;
 
     @Override
-    public Iterable<Project> getAll(PageRequest pageRequest) {
-        return projectRepository.findAll(pageRequest);
+    public List<Project> getAll(PageRequest pageRequest) {
+        return projectRepository.findAll(pageRequest).getContent();
     }
 
     @Override
@@ -29,14 +32,16 @@ public class ProjectServiceImpl implements ProjectsService {
     @Override
     @Transactional
     public Project create(Project newProject) {
+        newProject.setCreationDate(LocalDate.now());
         return projectRepository.save(newProject);
     }
 
     @Override
     @Transactional
     public Project update(int id, Project newProject) {
-        getById(id);
+        var found = getById(id);
         newProject.setId(id);
+        newProject.setCreationDate(found.getCreationDate());
         return projectRepository.save(newProject);
     }
 
