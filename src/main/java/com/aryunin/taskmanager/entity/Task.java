@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,4 +20,6 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "project_id", referencedColumnName = "id")
     private Project project;
+    @ManyToMany(mappedBy = "tasks")
+    private List<Employee> employees;
 }
