@@ -3,11 +3,12 @@ package com.aryunin.taskmanager.service.impl;
 import com.aryunin.taskmanager.entity.Employee;
 import com.aryunin.taskmanager.repository.EmployeeRepository;
 import com.aryunin.taskmanager.service.EmployeesService;
-import com.aryunin.taskmanager.service.TasksService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -16,8 +17,8 @@ public class EmployeesServiceImpl implements EmployeesService {
     private final EmployeeRepository repository;
 
     @Override
-    public Iterable<Employee> getAll(PageRequest pageRequest) {
-        return repository.findAll(pageRequest);
+    public List<Employee> getAll(PageRequest pageRequest) {
+        return repository.findAll(pageRequest).getContent();
     }
 
     @Override
